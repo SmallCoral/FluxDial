@@ -1,18 +1,18 @@
-# STM32 Sensor Display
+# FluxDial
 
 一块基于 STM32C562CET6 的温度、流量采集与圆形 LED 显示板。硬件连接 50kΩ NTC 温度探头、BTL-004A 霍尔流量传感器和 58mm 共阴 LED 屏，使用 HT16K33 完成显示扫描，程序通过 J-Link SWD 下载和调试。
 
 硬件工程使用 KiCad 10，项目符号、封装和 3D 模型随仓库保存。
 
 <p align="center">
-  <img src="docs/media/photos/assembled-board-powered.jpg" width="680" alt="STM32 Sensor Display 成品板点亮效果">
+  <img src="Images/photos/assembled-board-powered.jpg" width="680" alt="FluxDial 成品板点亮效果">
 </p>
 
 ## 当前状态
 
 - 硬件已完成制板、焊接和点亮验证。
-- `code/` 中的产品固件采集真实温度与流量，支持摄氏/华氏切换、热水提示、告警和传感器故障显示。
-- NTC 实际采样、温标切换和显示已在样板验证；流量中断/计时/停流逻辑已通过板上脉冲测试，实际通水和精度标定待完成，见 [验证记录](code/docs/VALIDATION.md)。
+- `Firmware/` 中的产品固件采集真实温度与流量，支持摄氏/华氏切换、热水提示、告警和传感器故障显示。
+- NTC 实际采样、温标切换和显示已在样板验证；流量中断/计时/停流逻辑已通过板上脉冲测试，实际通水和精度标定待完成，见 [验证记录](Documentation/Reports/firmware/VALIDATION.md)。
 - KiCad 工程、项目库、器件资料、交互式 BOM、实物照片和演示视频均随仓库保存。
 
 ## 演示
@@ -20,20 +20,20 @@
 以下视频记录早期显示演示固件，不代表当前产品固件的真实测量值。点击下面的封面可播放约 25 秒的 H.264 演示视频。视频展示 `00 → 100 → 00` 数值往返、环形进度、热水/告警区域以及按键切换温标。
 
 <p align="center">
-  <a href="docs/media/video/display-demo.mp4">
-    <img src="docs/media/video/display-demo-poster.jpg" width="360" alt="点击播放显示演示视频">
+  <a href="Images/video/display-demo.mp4">
+    <img src="Images/video/display-demo-poster.jpg" width="360" alt="点击播放显示演示视频">
   </a>
 </p>
 
 <p align="center">
-  <a href="docs/media/video/display-demo.mp4">播放兼容版 MP4</a>
+  <a href="Images/video/display-demo.mp4">播放兼容版 MP4</a>
   ·
-  <a href="docs/media/video/display-demo-original-hevc.mp4">下载原始 HEVC 视频</a>
+  <a href="Images/video/display-demo-original-hevc.mp4">下载原始 HEVC 视频</a>
 </p>
 
 | 未安装圆屏的 PCB 正面 | 暗环境显示效果 |
 | --- | --- |
-| <img src="docs/media/photos/assembled-board-front.jpg" width="420" alt="焊接完成的 PCB 正面"> | <img src="docs/media/photos/display-lit-dark.jpg" width="420" alt="暗环境下的圆形 LED 显示效果"> |
+| <img src="Images/photos/assembled-board-front.jpg" width="420" alt="焊接完成的 PCB 正面"> | <img src="Images/photos/display-lit-dark.jpg" width="420" alt="暗环境下的圆形 LED 显示效果"> |
 
 ## 硬件组成
 
@@ -103,54 +103,53 @@ PA11、PA12 未连接 USB 数据线路。
 ## 仓库结构
 
 ```text
-STM32-Sensor-Display/
+FluxDial/
 ├── README.md
-├── code/                         # STM32C562 固件目录
-├── docs/                         # 设计资料、器件规格书、媒体和 MCU 官方资料
-│   └── media/                    # 实物照片、演示视频和资料页图片
-└── pcb/ssd/
-    ├── ssd.kicad_pro             # KiCad 工程入口
-    ├── ssd.kicad_sch             # 原理图主页面
-    ├── mcu_minimum.kicad_sch     # MCU 最小系统
-    ├── usb_power.kicad_sch       # 电源、按键和 SWD
-    ├── display.kicad_sch         # 显示驱动
-    ├── sensors.kicad_sch         # 温度与流量接口
-    ├── ssd.kicad_pcb             # PCB
-    ├── libraries/                # 项目符号、封装和 3D 模型
-    ├── bom/                      # 交互式 HTML BOM
-    ├── docs/                     # 硬件设计说明
-    ├── review/                   # 封装图、引脚表和设计资料
-    └── tools/                    # 网表与 PCB 检查脚本
+├── Documentation/                # 设计说明和器件清单
+│   ├── Datasheets/               # 器件手册和 MCU 官方资料包
+│   └── Reports/                  # 固件验证、硬件检查与交互式 BOM
+├── Firmware/                     # STM32C562 固件、测试和构建工具
+├── Hardware/
+│   ├── FluxDial.kicad_pro        # KiCad 工程入口
+│   ├── FluxDial.kicad_sch        # 原理图主页面
+│   ├── FluxDial.kicad_pcb        # PCB
+│   ├── mcu_minimum.kicad_sch     # MCU 最小系统
+│   ├── usb_power.kicad_sch       # 电源、按键和 SWD
+│   ├── display.kicad_sch         # 显示驱动
+│   ├── sensors.kicad_sch         # 温度与流量接口
+│   ├── libraries/                # FluxDial 符号、封装和 3D 模型
+│   └── tools/                    # 网表与 PCB 检查脚本
+└── Images/                       # 实物照片、演示视频和资料页图片
 ```
 
 ## 打开工程
 
 ```bash
-git clone https://github.com/SmallCoral/STM32-Sensor-Display.git
-cd STM32-Sensor-Display
+git clone https://github.com/SmallCoral/STM32-Sensor-Display.git FluxDial
+cd FluxDial
 ```
 
-使用 KiCad 10 打开 [pcb/ssd/ssd.kicad_pro](pcb/ssd/ssd.kicad_pro)。项目自建库通过相对路径引用，克隆仓库后无需单独安装符号库或封装库。
+使用 KiCad 10 打开 [Hardware/FluxDial.kicad_pro](Hardware/FluxDial.kicad_pro)。项目自建库通过相对路径引用，克隆仓库后无需单独安装符号库或封装库。
 
 固件使用 GNU Arm Embedded 工具链构建：
 
 ```bash
-cd code
+cd Firmware
 make -j
 ```
 
-更完整的行为说明、构建输出和烧录提示见 [固件说明](code/README.md)。
+更完整的行为说明、构建输出和烧录提示见 [固件说明](Firmware/README.md)。
 
 ## 文档
 
-- [固件说明](code/README.md)
-- [KiCad 工程说明](pcb/ssd/README.md)
-- [硬件设计说明](pcb/ssd/docs/DESIGN_NOTES.md)
-- [STM32C562 最小系统](pcb/ssd/docs/C562_MIGRATION.md)
-- [晶振与封装说明](pcb/ssd/docs/HSE_FOOTPRINT_A2.md)
-- [器件清单](docs/BOM.csv)
-- [交互式 BOM](pcb/ssd/bom/ibom.html)
-- [STM32C562 官方资料包](docs/STM32C562CET6_官方资料包_2026-09-16/00_README_中文.md)
-- [照片与视频索引](docs/media/README.md)
-- [圆屏 1:1 对位图](pcb/ssd/review/display_footprint_1to1.pdf)
-- [MCU 封装尺寸图](pcb/ssd/review/mcu_footprint_dimensioned.pdf)
+- [固件说明](Firmware/README.md)
+- [KiCad 工程说明](Hardware/README.md)
+- [硬件设计说明](Documentation/DESIGN_NOTES.md)
+- [STM32C562 最小系统](Documentation/C562_MIGRATION.md)
+- [晶振与封装说明](Documentation/HSE_FOOTPRINT_A2.md)
+- [器件清单](Documentation/BOM.csv)
+- [交互式 BOM](Documentation/Reports/interactive-bom/ibom.html)
+- [STM32C562 官方资料包](Documentation/Datasheets/STM32C562CET6_2026-09-16/00_README_中文.md)
+- [照片与视频索引](Images/README.md)
+- [圆屏 1:1 对位图](Documentation/Reports/hardware-review/display_footprint_1to1.pdf)
+- [MCU 封装尺寸图](Documentation/Reports/hardware-review/mcu_footprint_dimensioned.pdf)
