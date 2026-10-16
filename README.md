@@ -125,7 +125,7 @@ FluxDial/
 ## 打开工程
 
 ```bash
-git clone https://github.com/SmallCoral/STM32-Sensor-Display.git FluxDial
+git clone https://github.com/SmallCoral/FluxDial.git
 cd FluxDial
 ```
 
