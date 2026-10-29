@@ -9,7 +9,7 @@
 | `stm32c5xx-dfp` | DFP 2.1.0，`a5f65bc64535cfa723e9d25f58d7ce23d0937aed` |
 | `cmsis-core` | `2327f7224ff212b2436e5a4cadda3288143fd041` |
 
-各组件的原始许可证文件保存在对应目录中，导入代码时请一并保留。项目自己的启动文件、链接脚本和应用代码位于 `Core/`、仓库根下的链接脚本及其他固件目录，构建方式见 [固件说明](../README.md)。
+各组件的原始许可证文件保存在对应目录中，导入代码时请一并保留。项目自己的启动文件、链接脚本和应用代码位于 `Core/`、Firmware/ 根目录中的链接脚本及其他固件目录，构建方式见 [固件说明](../README.md)。
 
 上游入口：
 
@@ -19,3 +19,5 @@
 - [ST CMSIS Core 镜像](https://github.com/STMicroelectronics/cmsis-core)
 
 2026-10-06：从上述同一 STM32C5 Drivers 固定提交的 `ll/` 目录补入 `stm32c5xx_ll_adc.h`、`stm32c5xx_ll_exti.h`、`stm32c5xx_ll_tim.h` 和 `stm32c5xx_ll_iwdg.h`，用于产品固件传感器采样及看门狗。
+
+各许可证的范围与项目自身的授权状态见 [许可证与第三方资料](../../docs/licenses.md)。

@@ -1,11 +1,16 @@
 # 验证记录与历史导出
 
-| 目录 | 内容 |
+当前版本的软件与硬件检查集中在 [验证记录](../../docs/validation.md)，本轮文档审查见 [审查报告](../../docs/documentation-audit-2026-10-29.md)。
+
+| 目录 | 内容与范围 |
 | --- | --- |
-| [firmware/](firmware/VALIDATION.md) | 产品固件的计算测试和实板验证记录 |
-| [hardware-review/](hardware-review/) | 原有网表、检查结果、封装图和设计备份 |
-| [interactive-bom/](interactive-bom/ibom.html) | 交互式 PCB 器件清单 |
+| [firmware](firmware/VALIDATION.md) | 2026-10-06 的产品固件与实板验证记录 |
+| [hardware-review](hardware-review/) | 原有网表、设计清单、检查 JSON、封装图及备份 |
+| [interactive-bom](interactive-bom/ibom.html) | 历史交互式 PCB 器件清单 |
 
-`hardware-review/` 和交互式 BOM 保留原有导出内容，工程名及资源路径随 FluxDial 整理。目录内不同日期的网表、设计清单和检查结果来自不同设计阶段，不能合并视作当前硬件已经通过的检查。
+历史导出来自不同设计阶段，不能拼合为当前硬件全部通过的证明。
+归档 BOM、网表和图页注释中的器件值可能落后于当前 KiCad 文件。
 
-`Hardware/tools/` 中的旧检查脚本继续使用这些历史数据。整理前运行时，网表与清单、PCB 与清单之间已存在差异；本次目录调整未修改电路连接或 PCB 几何。检查当前硬件时，应先从当前 KiCad 工程重新导出，并更新对应的预期清单。
+[旧网表检查脚本](../../Hardware/tools/check_netlist.py)与 [旧 PCB 检查脚本](../../Hardware/tools/check_pcb.py)仍读取本目录中的预期清单和导出网表。
+它们并非自动针对当前工程重建的回归检查，出现差异时应先核对各输入的版本。
+本轮没有重写预期清单、覆盖历史报告或修改检查脚本。
